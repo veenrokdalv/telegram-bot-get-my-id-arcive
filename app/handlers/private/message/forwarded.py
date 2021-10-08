@@ -1,19 +1,15 @@
 from aiogram import Dispatcher, html
 
 from aiogram.types import Message
-from aiogram.methods import SendMessage
 from aiogram.utils.i18n import I18n
 
 __all__ = ['setup']
-
-import loggers
 
 
 async def send_info_from_message(message: Message, _: I18n.gettext):
     forward_from = message.forward_from
     forward_from_chat = message.forward_from_chat
     forward_from_message_id = message.forward_from_message_id
-
 
     if forward_from:
         forward_from_info = _(
@@ -29,7 +25,6 @@ async def send_info_from_message(message: Message, _: I18n.gettext):
         )
     else:
         forward_from_chat_info = ''
-
 
     await message.send_copy(message.from_user.id)
     await message.answer(
