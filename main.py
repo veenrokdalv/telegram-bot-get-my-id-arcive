@@ -5,30 +5,18 @@ from zoneinfo import ZoneInfo
 
 from aiogram import Dispatcher, Bot, html
 from aiogram.dispatcher.fsm.storage.memory import MemoryStorage
-from aiogram.dispatcher.fsm.storage.redis import RedisStorage
 from aiogram.dispatcher.fsm.strategy import FSMStrategy
 from aiogram.utils.i18n import I18n
-from aioredis import Redis
-from sqlalchemy.ext.asyncio import create_async_engine, AsyncSession, AsyncConnection, AsyncEngine
-from sqlalchemy.orm import sessionmaker
+from sqlalchemy.ext.asyncio import AsyncEngine
 
 import loggers
 import settings
 from app import middlewares, filters, handlers
-from app.models.base import BaseModel
-from app.services.repo import Repo
 from app.utils.bot import malling_message
 
 
-async def _on_startup(bots: list[Bot], i18n: I18n, _: I18n.gettext, db_engine: AsyncEngine):
+async def _on_startup(bots: list[Bot], i18n: I18n, _: I18n.gettext):
     _start_time = settings.START_TIME.astimezone(ZoneInfo(settings.DEFAULT_TIMEZONE)).strftime("%Y-%m-%d %H:%M:%S")
-
-    # Create tables in db.
-    async with db_engine.begin() as conn:
-        conn: AsyncConnection
-        if settings.USE_CLEAR_TABLES:
-            await conn.run_sync(BaseModel.metadata.drop_all)
-        await conn.run_sync(BaseModel.metadata.create_all)
 
     for bot in bots:
         bot_account = await bot.me()
@@ -78,33 +66,18 @@ if __name__ == '__main__':
 
     loggers.setup()
 
-    # Url db.
-    url = (f'postgresql+asyncpg://{settings.DATABASE_USER}:{settings.DATABASE_PASSWORD}@{settings.DATABASE_HOST}:'
-           f'{settings.DATABASE_PORT}/{settings.DATABASE_DATABASE}')
-
-    db_engine = create_async_engine(url=url)
-    db_session = sessionmaker(bind=db_engine, future=True, class_=AsyncSession, expire_on_commit=False)
-    repo = Repo(db_session, db_engine)
-
     # List bots.
     bots = [
         Bot(token=settings.TELEGRAM_BOT_API_TOKEN, parse_mode='HTML')
     ]
 
-    # Init memory storage.
-    if settings.USE_REDIS_STORAGE:
-        redis = Redis(host=settings.REDIS_HOST, port=settings.REDIS_PORT, db=settings.REDIS_DATABASE)
-        storage = RedisStorage(redis=redis)
-    else:
-        storage = MemoryStorage()
-
-    dispatcher = Dispatcher(storage=storage, fsm_strategy=FSMStrategy.USER_IN_CHAT, isolate_events=False)
+    dispatcher = Dispatcher(storage=MemoryStorage(), fsm_strategy=FSMStrategy.USER_IN_CHAT, isolate_events=False)
 
     i18n = I18n(path=settings.LOCALES_DIR, default_locale=settings.DEFAULT_LOCALE, domain=settings.I18N_DOMAIN)
 
     # Data available in the workflow.
     bot_data = {
-        '_': i18n.gettext, 'i18n': i18n, 'repo': repo, 'db_engine': db_engine, 'db_session': db_session
+        '_': i18n.gettext, 'i18n': i18n,
     }
 
     # Registration of logic before launching bots.
