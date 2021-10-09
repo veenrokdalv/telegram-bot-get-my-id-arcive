@@ -16,7 +16,7 @@ async def send_main_keyboard(_, user, state: FSMContext = None, **kwargs):
 
     keyboard = get_main_keyboard(_, user, locale=kwargs.get('locale'))
 
-    text = _('Вы перемещены на главное меню', locale=kwargs.get('locale'))
+    text = _('You have been moved to the main menu', locale=kwargs.get('locale'))
 
     await bot.send_message(
         text=text,

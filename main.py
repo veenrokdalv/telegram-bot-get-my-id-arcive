@@ -18,17 +18,24 @@ async def _on_startup(bots: list[Bot], i18n: I18n, _: I18n.gettext):
     _start_time = settings.START_TIME.astimezone(ZoneInfo(settings.DEFAULT_TIMEZONE)).strftime("%Y-%m-%d %H:%M:%S")
 
     for bot in bots:
-        bot_account = await bot.me()
+        bot_me = await bot.me()
         await malling_message.text(
             bot=bot, chat_ids=settings.SUPERUSERS_TELEGRAM_ID,
             message_text=_(
                 'Bot started!\n'
-                f'My id: {html.code(bot_account.id)}\n'
-                f'My username: @{bot_account.username}\n'
-                f'<b>Locale default:</> {html.bold(settings.DEFAULT_LOCALE)}.\n'
-                f'<b>Available locales:</> {html.bold(", ".join(i18n.available_locales) or settings.DEFAULT_LOCALE)}.\n'
-                f'<b>Timezone default:</> {html.bold(settings.DEFAULT_TIMEZONE)}.\n'
-                f'<b>Start time:</> {html.code(_start_time)}.\n'
+                'My id: <code>{bot_me_id}</>\n'
+                'My username: @{bot_me_username}\n'
+                '<b>Default locale:</> <b>{default_locale}</>.\n'
+                '<b>Available locales:</> <b>{awaible_locales}</>.\n'
+                '<b>Default timezone:</> <b>{default_timezone}</>.\n'
+                '<b>Start time:</> <b>{_start_time}</>.\n'
+            ).format(
+                _start_time=_start_time,
+                awaible_locales=", ".join(i18n.available_locales) or settings.DEFAULT_LOCALE,
+                bot_me_id=bot_me.id,
+                bot_me_username=bot_me.username,
+                default_timezone=settings.DEFAULT_TIMEZONE,
+                default_locale=settings.DEFAULT_LOCALE,
             )
         )
 
@@ -41,8 +48,11 @@ async def _on_shutdown(dispatcher: Dispatcher, bots: list[Bot], _: I18n.gettext)
             chat_ids=settings.SUPERUSERS_TELEGRAM_ID,
             message_text=_(
                 '<b>Bot stopped!</>\n'
-                f'<b>Time stopped:</> {dt.datetime.now(ZoneInfo(settings.DEFAULT_TIMEZONE))}\n'
-                f'<b>Working time:</> {_working_time}\n\n'
+                '<b>Time stopped:</> <b>{time_stopped}</>\n'
+                '<b>Working time:</> {_working_time}\n\n'
+            ).format(
+                time_stopped=dt.datetime.now(ZoneInfo(settings.DEFAULT_TIMEZONE)),
+                _working_time=_working_time,
             )
         )
 

@@ -1,7 +1,7 @@
 from typing import Any, Dict
 
 from aiogram import Dispatcher
-from aiogram.types import TelegramObject
+from aiogram.types import Update
 from aiogram.utils.i18n import I18nMiddleware, I18n
 
 from settings import DEFAULT_LOCALE
@@ -16,7 +16,12 @@ class TranslationMiddleware(I18nMiddleware):
 
         super().__init__(i18n=self.i18n)
 
-    async def get_locale(self, event: TelegramObject, data: Dict[str, Any]) -> str:
+    async def get_locale(self, event: Update, data: Dict[str, Any]) -> str:
+        event = event.event
+
+        if hasattr(event, 'from_user'):
+            return event.from_user.language_code
+
         return DEFAULT_LOCALE
 
 

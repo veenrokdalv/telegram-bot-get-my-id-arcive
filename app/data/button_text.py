@@ -1,3 +1,3 @@
 from gettext import gettext as _
 
-# Create button text
+link_to_repo = _("My repository on github")

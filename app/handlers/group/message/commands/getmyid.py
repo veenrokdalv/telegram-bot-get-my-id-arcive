@@ -9,7 +9,9 @@ __all__ = ['setup']
 async def send_info_from_message(message: Message, _: I18n.gettext):
     await message.answer(
         text=_(
-            f'<i>Your account ID:</i> {html.code(message.from_user.id)}\n'
+            '<i>Your account ID:</i> <code>{user_account_id}</>\n'
+        ).format(
+            user_account_id=message.from_user.id
         )
     )
 

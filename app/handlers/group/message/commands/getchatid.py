@@ -9,9 +9,13 @@ __all__ = ['setup']
 async def send_info_from_message(message: Message, _: I18n.gettext):
     await message.answer(
         text=_(
-            f'<i>Your account ID:</i> {html.code(message.from_user.id)}\n'
-            f'<i>Current chat ID:</i> {html.code(message.chat.id)}\n'
-            f'<i>Current message ID:</i> {html.code(message.message_id)}\n'
+            '<i>Your account ID:</i> <code>{user_account_id}</>\n'
+            '<i>Current chat ID:</i> <code>{current_chat_id}</>\n'
+            '<i>Current message ID:</i> <code>{current_message_id}</>\n'
+        ).foramt(
+            user_account_id=message.from_user.id,
+            current_chat_id=message.chat.id,
+            current_message_id=message.message_id
         )
     )
 

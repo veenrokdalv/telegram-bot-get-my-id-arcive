@@ -13,24 +13,31 @@ async def send_info_from_message(message: Message, _: I18n.gettext):
 
     if forward_from:
         forward_from_info = _(
-            f'<i>Forward from account ID:</i> {html.code(forward_from and forward_from.id or "-")}\n'
-        )
+            '<i>Forward from account ID:</i> <code>{forward_from_id}</>\n'
+        ).format(forward_from_id=html.code(forward_from and forward_from.id or "-"))
     else:
         forward_from_info = ''
 
     if forward_from_chat or forward_from_message_id:
         forward_from_chat_info = _(
-            f'<i>Forward from chat ID:</i> {html.code(forward_from_chat and forward_from_chat.id or "-")}\n'
-            f'<i>Forward from message ID:</i> {html.code(forward_from_message_id or "-")}\n'
+            '<i>Forward from chat ID:</i> <code>{forward_from_chat_id}</>\n'
+            '<i>Forward from message ID:</i> <code>{forward_from_message_id}</>\n'
+        ).format(
+            forward_from_chat_id=forward_from_chat and forward_from_chat.id or "-",
+            forward_from_message_id=forward_from_message_id or "-"
         )
     else:
         forward_from_chat_info = ''
 
     await message.answer(
         text=_(
-            f'<i>Your account ID:</i> {html.code(message.from_user.id)}\n'
-            f'{forward_from_info if forward_from_info else ""}'
-            f'{forward_from_chat_info if forward_from_chat_info else ""}'
+            '<i>Your account ID:</i> <code>{user_account_id}</>\n'
+            '{forward_from_info}'
+            '{forward_from_chat_info}'
+        ).format(
+            forward_from_info=forward_from_info,
+            forward_from_chat_info=forward_from_chat_info,
+            user_account_id=message.from_user.id
         )
     )
 
