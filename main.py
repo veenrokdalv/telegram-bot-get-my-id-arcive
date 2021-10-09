@@ -7,7 +7,6 @@ from aiogram import Dispatcher, Bot, html
 from aiogram.dispatcher.fsm.storage.memory import MemoryStorage
 from aiogram.dispatcher.fsm.strategy import FSMStrategy
 from aiogram.utils.i18n import I18n
-from sqlalchemy.ext.asyncio import AsyncEngine
 
 import loggers
 import settings
