@@ -6,7 +6,7 @@ from aiogram.types import Message, CallbackQuery, ChatMemberUpdated, InlineQuery
 
 
 class ChatTypeFilter(BaseFilter):
-    chat_type: str
+    chat_type: Union[list[str], str]
 
     async def __call__(self, obj: Union[Message, CallbackQuery, InlineQuery, ChatMemberUpdated]):
         if isinstance(obj, Message):

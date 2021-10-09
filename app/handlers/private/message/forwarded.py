@@ -26,7 +26,6 @@ async def send_info_from_message(message: Message, _: I18n.gettext):
     else:
         forward_from_chat_info = ''
 
-    await message.send_copy(message.from_user.id)
     await message.answer(
         text=_(
             f'<i>Your account ID:</i> {html.code(message.from_user.id)}\n'

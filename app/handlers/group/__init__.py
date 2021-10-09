@@ -1,8 +1,8 @@
 from aiogram import Dispatcher
 
-from . import inline_query, message,  callback_query
+from . import message, service_messages
 
 
 def setup(dispatcher: Dispatcher):
-    for module in (inline_query, message,  callback_query):
+    for module in (message, service_messages):
         module.setup(dispatcher)

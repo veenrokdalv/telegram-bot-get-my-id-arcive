@@ -2,6 +2,7 @@ from aiogram import Dispatcher, html, Bot
 from aiogram.types import Message
 from aiogram.utils.i18n import I18n
 
+from app.keyboards import inline
 from app.utils.helper import formatting
 from settings import LINK_TO_REPO
 
@@ -15,7 +16,9 @@ async def start(message: Message, bot: Bot, _: I18n.gettext):
             f'Use the /help command to familiarize yourself with me.\n\n'
             f'<i>Your account ID:</i> {html.code(message.from_user.id)}\n'
             f'<i>Your account username:</i> {formatting.username(user_username=message.from_user.username, default="-")}\n'
-        )
+        ),
+        reply_markup=inline.link_to_repo.keyboard(_),
+        disable_web_page_preview=True,
     )
 
 
