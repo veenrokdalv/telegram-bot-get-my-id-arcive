@@ -1,0 +1,148 @@
+# English translations for PROJECT.
+# Copyright (C) 2021 ORGANIZATION
+# This file is distributed under the same license as the PROJECT project.
+# FIRST AUTHOR <EMAIL@ADDRESS>, 2021.
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: PROJECT VERSION\n"
+"Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
+"POT-Creation-Date: 2021-10-09 13:11+0300\n"
+"PO-Revision-Date: 2021-10-09 13:14+0300\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language: en\n"
+"Language-Team: en <LL@li.org>\n"
+"Plural-Forms: nplurals=2; plural=(n != 1)\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=utf-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Generated-By: Babel 2.9.1\n"
+
+#: main.py:24
+msgid ""
+"Bot started!\n"
+"My id: <code>{bot_me_id}</>\n"
+"My username: @{bot_me_username}\n"
+"<b>Default locale:</> <b>{default_locale}</>.\n"
+"<b>Available locales:</> <b>{awaible_locales}</>.\n"
+"<b>Default timezone:</> <b>{default_timezone}</>.\n"
+"<b>Start time:</> <b>{_start_time}</>.\n"
+msgstr ""
+"Bot started!\n"
+"My id: <code>{bot_me_id}</>\n"
+"My username: @{bot_me_username}\n"
+"<b>Default locale:</> <b>{default_locale}</>.\n"
+"<b>Available locales:</> <b>{awaible_locales}</>.\n"
+"<b>Default timezone:</> <b>{default_timezone}</>.\n"
+"<b>Start time:</> <b>{_start_time}</>.\n"
+
+#: main.py:49
+msgid ""
+"<b>Bot stopped!</>\n"
+"<b>Time stopped:</> <b>{time_stopped}</>\n"
+"<b>Working time:</> {_working_time}\n"
+"\n"
+msgstr ""
+"<b>Bot stopped!</>\n"
+"<b>Time stopped:</> <b>{time_stopped}</>\n"
+"<b>Working time:</> {_working_time}\n"
+"\n"
+
+#: app/data/button_text.py:3
+msgid "My repository on github"
+msgstr ""
+
+#: app/handlers/group/message/commands/getchatid.py:11
+msgid ""
+"<i>Your account ID:</i> <code>{user_account_id}</>\n"
+"<i>Current chat ID:</i> <code>{current_chat_id}</>\n"
+"<i>Current message ID:</i> <code>{current_message_id}</>\n"
+msgstr ""
+"<i>Your account ID:</i> <code>{user_account_id}</>\n"
+"<i>Current chat ID:</i> <code>{current_chat_id}</>\n"
+"<i>Current message ID:</i> <code>{current_message_id}</>\n"
+
+#: app/handlers/group/message/commands/getmyid.py:11
+#: app/handlers/private/message/not_forwarded.py:11
+msgid "<i>Your account ID:</i> <code>{user_account_id}</>\n"
+msgstr "<i>Your account ID:</i> <code>{user_account_id}</>\n"
+
+#: app/handlers/private/message/forwarded.py:15
+msgid "<i>Forward from account ID:</i> <code>{forward_from_id}</>\n"
+msgstr "<i>Forward from account ID:</i> <code>{forward_from_id}</>\n"
+
+#: app/handlers/private/message/forwarded.py:22
+msgid ""
+"<i>Forward from chat ID:</i> <code>{forward_from_chat_id}</>\n"
+"<i>Forward from message ID:</i> <code>{forward_from_message_id}</>\n"
+msgstr ""
+"<i>Forward from chat ID:</i> <code>{forward_from_chat_id}</>\n"
+"<i>Forward from message ID:</i> <code>{forward_from_message_id}</>\n"
+
+#: app/handlers/private/message/forwarded.py:33
+msgid ""
+"<i>Your account ID:</i> <code>{user_account_id}</>\n"
+"{forward_from_info}{forward_from_chat_info}"
+msgstr ""
+"<i>Your account ID:</i> <code>{user_account_id}</>\n"
+"{forward_from_info}{forward_from_chat_info}"
+
+#: app/handlers/private/message/commands/help.py:14
+msgid ""
+"My commands.\n"
+"/start - <b>Start bot.</>\n"
+"/help - <b>Help menu.</>\n"
+"/getchatid - <b>Give current chat ID.</>\n"
+"/getmyid - <b>Give Your account ID.</>\n"
+"\n"
+"This bot allows you to find out the user ID, message or chat. Add the bot"
+" to the chat and use the /getmyid or /getchatid command to find out "
+"<b>Your ID</> or <b>Chat ID</>, respectively.\n"
+"You can also write in private messages to the bot to find out <b>Your "
+"ID</> or forward a message to <b>Another user</> and get information "
+"about him.\n"
+"\n"
+"{link_to_repo}."
+msgstr ""
+"My commands.\n"
+"/start - <b>Start bot.</>\n"
+"/help - <b>Help menu.</>\n"
+"/getchatid - <b>Give current chat ID.</>\n"
+"/getmyid - <b>Give Your account ID.</>\n"
+"\n"
+"This bot allows you to find out the user ID, message or chat. Add the bot"
+" to the chat and use the /getmyid or /getchatid command to find out "
+"<b>Your ID</> or <b>Chat ID</>, respectively.\n"
+"You can also write in private messages to the bot to find out <b>Your "
+"ID</> or forward a message to <b>Another user</> and get information "
+"about him.\n"
+"\n"
+"{link_to_repo}."
+
+#: app/handlers/private/message/commands/start.py:13
+msgid ""
+"Welcome, <b>{user_account_full_name}</>!\n"
+"My username - @{bot_me_username}\n"
+"Use the /help command to familiarize yourself with me.\n"
+"\n"
+"<i>Your account ID:</i> {user_account_id}\n"
+"<i>Your account username:</i> {user_account_username}\n"
+msgstr ""
+"Welcome, <b>{user_account_full_name}</>!\n"
+"My username - @{bot_me_username}\n"
+"Use the /help command to familiarize yourself with me.\n"
+"\n"
+"<i>Your account ID:</i> {user_account_id}\n"
+"<i>Your account username:</i> {user_account_username}\n"
+
+#: app/keyboards/inline/link_to_repo.py:11
+msgid "My repository on GitHub."
+msgstr ""
+
+#: app/utils/bot/send_keyboards.py:19
+msgid "Вы перемещены на главное меню"
+msgstr ""
+
+#~ msgid "You have been moved to the main menu"
+#~ msgstr "You have been moved to the main menu"
+
